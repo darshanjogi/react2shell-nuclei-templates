@@ -1,0 +1,36 @@
+id: react2shell-detect
+
+info:
+  name: React2Shell Detection (Dev Server Exposure)
+  author: Darshan Jogi
+  severity: high
+  description: |
+    Detects exposed React/Webpack development server endpoints
+    that may act as a prerequisite for React2Shell-style exploitation.
+    This template is passive and does not attempt exploitation.
+  tags: react, react2shell, webpack, dev-server, detection
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/sockjs-node/info"
+      - "{{BaseURL}}/sockjs-node/"
+      - "{{BaseURL}}/__webpack_dev_server__"
+      - "{{BaseURL}}/webpack-dev-server"
+
+    matchers-condition: or
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "sockjs"
+          - "webpack"
+          - "hot-update"
+          - "react-dev-utils"
+          - "webpackHotUpdate"
+
+      - type: regex
+        regex:
+          - "\"websocket\"\\s*:\\s*true"
+          - "webpack-dev-server"
+          - "sockjs-node"

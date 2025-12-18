@@ -25,7 +25,7 @@ The confirmation template confirms unauthenticated remote code execution in vuln
 
 ## Demo
 
-demo/react2shell-detect.gif
+![demo](demo.gif)
 
 
 

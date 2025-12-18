@@ -8,15 +8,6 @@ info:
   description: |
     Detects CVE-2025-55182 and CVE-2025-66478, a Remote Code Execution vulnerability in Next.js applications using React Server Components.
     It attempts to execute 'echo $((1337*10001))' on the server. If successful, the server returns a redirect to '/login?a=11111'.
-  reference:
-  classification:
-    cvss-metrics: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H
-    cvss-score: 10.0
-    cve-id:
-      - CVE-2025-55182
-      - CVE-2025-66478
-  tags: cve, cve2025, nextjs, rce, react
-
 http:
   - raw:
       - |
@@ -49,4 +40,5 @@ http:
         words:
           - "/login?a=13371337"
           - "X-Action-Redirect"
+
         condition: and
